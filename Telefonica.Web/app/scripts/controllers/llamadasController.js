@@ -26,10 +26,17 @@
       vm.usuarios = [];
       vm.getLlamadas = getLlamadas;
       vm.getLlamadasCosto = getLlamadasCosto;
+      vm.selectedItem = selectedItem;
 
       vm.startDate;
       vm.endDate;
       vm.total = 0;
+
+      vm.llamada = {};
+      vm.costollamada = 0.0;
+
+      vm.tab = true;
+      
 
       function getLlamadas(inicio, fin) {
 
@@ -67,6 +74,26 @@
           function fail(response) {
               return response;
           }
+      }
+
+      function selectedItem(item) {
+
+          vm.llamada = item;
+
+          return $http({
+              method: 'GET',
+              url: serviceRoot + 'api/Llamada/CalculaCosto/' + item.LlamadaId + "",
+          }).then(sucess, fail);
+
+          function sucess(response) {
+              vm.costollamada = response.data
+              vm.tab = false;
+              return vm.total;
+          }
+          function fail(response) {
+              return response;
+          }
+
       }
   }
 

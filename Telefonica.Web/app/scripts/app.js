@@ -20,11 +20,6 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'app/views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'vm'
-      })
       .when('/usuarios', {
         templateUrl: 'app/views/usuarios.html',
         controller: 'UsuariosCtrl',
@@ -35,7 +30,7 @@ angular
         controller: 'TelefonosCtrl',
         controllerAs: 'vm'
       })
-      .when('/llamadas', {
+      .when('/', {
         templateUrl: 'app/views/llamadas.html',
         controller: 'LlamadasCtrl',
         controllerAs: 'vm'

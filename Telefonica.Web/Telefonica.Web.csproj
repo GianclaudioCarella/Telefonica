@@ -102,13 +102,11 @@
     <Content Include="app\scripts\app.js" />
     <Content Include="app\scripts\controllers\appController.js" />
     <Content Include="app\scripts\controllers\llamadasController.js" />
-    <Content Include="app\scripts\controllers\mainController.js" />
     <Content Include="app\scripts\controllers\telefonosController.js" />
     <Content Include="app\scripts\controllers\usuariosController.js" />
     <Content Include="app\scripts\filters\myfilter.js" />
     <Content Include="app\styles\main.css" />
     <Content Include="app\views\llamadas.html" />
-    <Content Include="app\views\main.html" />
     <Content Include="app\views\telefonos.html" />
     <Content Include="app\views\usuarios.html" />
     <Content Include="Global.asax" />

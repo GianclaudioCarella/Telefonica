@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-
-public partial class TelefonicaEntities : DbContext
+namespace Telefonica.Business
 {
-    public TelefonicaEntities()
-        : base("name=TelefonicaEntities")
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    
+    public partial class TelefonicaEntities : DbContext
     {
+        public TelefonicaEntities()
+            : base("name=TelefonicaEntities")
+        {
+        }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual DbSet<Telefono> Telefonos { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Llamada> Llamadas { get; set; }
     }
-
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-        throw new UnintentionalCodeFirstException();
-    }
-
-    public virtual DbSet<Llamada> Llamadas { get; set; }
-    public virtual DbSet<Telefono> Telefonos { get; set; }
-    public virtual DbSet<Usuario> Usuarios { get; set; }
 }

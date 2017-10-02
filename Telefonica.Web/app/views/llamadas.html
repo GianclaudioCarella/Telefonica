@@ -1,62 +1,73 @@
 <md-toolbar md-scroll-shrink ng-if="true">
-  <div class="md-toolbar-tools">
-    <h3>
-      <span>{{vm.title}}</span>
-    </h3>
-  </div>
+    <div class="md-toolbar-tools">
+        <h3>
+            <span>{{vm.title}}</span>
+        </h3>
+    </div>
 </md-toolbar>
-<md-tabs class="md-accent" md-align-tabs="top" flex>
-  <md-tab id="tab1">
-    <md-tab-label>Lista Llamadas</md-tab-label>
-    <md-tab-body>
 
-      <div layout-gt-xs="row">
-        <div flex-gt-xs>
-          <h4>Start Date</h4>
-          <md-datepicker ng-model="vm.startDate" md-placeholder="Enter date"></md-datepicker>
-        </div>
-        <div flex-gt-xs>
-          <h4>End Date</h4>
-          <md-datepicker ng-model="vm.endDate" md-placeholder="Enter date"></md-datepicker>
-        </div>
-        <div flex-gt-xs>
-          <button style="margin:30px;" ng-click="vm.getLlamadas(vm.startDate, vm.endDate)">Buscar</button>
-        </div>
-      </div>
+<div layout-gt-xs="row" layout-align="space-around center">
+    <div flex-gt-xs>
+        <h4 style="margin-left:20px;">Start Date</h4>
+        <md-datepicker ng-model="vm.startDate" md-placeholder="Enter date"></md-datepicker>
+    </div>
+    <div flex-gt-xs>
+        <h4 style="margin-left:20px;">End Date</h4>
+        <md-datepicker ng-model="vm.endDate" md-placeholder="Enter date"></md-datepicker>
+    </div>
+    <div flex-gt-xs>
+        <md-button style="margin:30px;" class="md-raised md-primary" ng-click="vm.getLlamadas(vm.startDate, vm.endDate)">Buscar</md-button>
+    </div>
+</div>
 
-      <md-list-item ng-repeat="m in vm.llamadas"
-                    class="md-3-line">
-        <!--<pqs-avatar pqs-avatar-data="{name: m.ToAddresses }" class="large"></pqs-avatar>-->
-        <img ng-src="app/images/call.png" class="md-avatar" style="margin-top:22px" />
-        <div class="md-list-item-text" layout="column">
-          <h3><b>Nombre: </b>{{ m.Nombre }}</h3>
-          <h4><b>Numero Destino:</b> +{{ m.Telefono.CodPais }} ({{ m.Telefono.Area }}) {{ m.Telefono.Numero }}</h4>
-          <h4><b>Inicio:</b> {{ m.InicioLlamada | date:'yyyy-MM-dd HH:mm:ss' }}</h4>
-          <h4><b>Fin:</b> {{ m.FinLlamada | date:'yyyy-MM-dd HH:mm:ss'  }}</h4>
+<md-tabs class="md-accent" md-stretch-tabs="always" md-border-bottom flex layout-fill>
+    <md-tab id="tab1">
+        <md-tab-label>Lista Llamadas</md-tab-label>
+        <md-tab-body>
+            <md-tab-content flex>
+                <md-content class="md-whiteframe-4dp innerTwo" style="" flex>
+                    
+                    <md-list-item ng-repeat="m in vm.llamadas"
+                                  class="md-3-line">
+                        <img ng-src="app/images/call.png" class="md-avatar" style="margin-top:22px" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3><b>Nombre: </b>{{ m.Usuario.Nombre }}</h3>
+                            <h4><b>Numero Destino:</b> +{{ m.Telefono.CodPais }} ({{ m.Telefono.Area }}) {{ m.Telefono.Numero }}</h4>
+                            <h4><b>Inicio:</b> {{ m.InicioLlamada | date:'yyyy-MM-dd HH:mm:ss' }}</h4>
+                            <h4><b>Fin:</b> {{ m.FinLlamada | date:'yyyy-MM-dd HH:mm:ss'  }}</h4>
 
-        </div>
+                        </div>
 
-        <md-menu class="md-secondary">
-          <md-button class="md-icon-button">
-            <ng-md-icon icon="menu"></ng-md-icon>
-          </md-button>
-          <md-menu-content width="4">
-            <md-menu-item>
-              <md-button>
-                <ng-md-icon icon="delete">
-                </ng-md-icon>
-                Borrar
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-      </md-list-item>
-    </md-tab-body>
-  </md-tab>
-  <md-tab id="tab2">
-    <md-tab-label>Nuevo Usuario</md-tab-label>
-    <md-tab-body>
-      View for Item #2 <br /> data.selectedIndex = 1;
-    </md-tab-body>
-  </md-tab>
+                        <md-menu class="md-secondary">
+                            <md-button class="md-icon-button">
+                                <ng-md-icon icon="menu"></ng-md-icon>
+                            </md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button>
+                                        <ng-md-icon icon="delete">
+                                        </ng-md-icon>
+                                        Borrar
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-list-item>
+
+                    <div layout="column" flex></div>
+                    <div layout-gt-xs="row" layout-align="space-around center">
+                        <div flex-gt-xs>
+                            <h4 style="margin-left:20px;">Costo Llamadas</h4>
+                        </div>
+                        <div flex></div>
+                        <div flex-gt-xs>
+                            <h4>$ {{vm.total | number : 2}}</h4>
+                        </div>
+                    </div>
+
+                </md-content>
+            </md-tab-content>
+        </md-tab-body>
+    </md-tab>
 </md-tabs>
+

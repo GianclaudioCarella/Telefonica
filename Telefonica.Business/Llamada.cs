@@ -7,16 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Llamada
+namespace Telefonica.Business
 {
-    public System.Guid LlamadaId { get; set; }
-    public System.Guid UsuarioId { get; set; }
-    public System.Guid TelefonoId { get; set; }
-    public System.DateTime InicioLlamada { get; set; }
-    public System.DateTime FinLlamada { get; set; }
-
-    public virtual Telefono Telefono { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Llamada
+    {
+        public System.Guid LlamadaId { get; set; }
+        public System.Guid UsuarioId { get; set; }
+        public System.Guid TelefonoId { get; set; }
+        public System.DateTime InicioLlamada { get; set; }
+        public System.DateTime FinLlamada { get; set; }
+    
+        public virtual Telefono Telefono { get; set; }
+        public virtual Usuario Usuario { get; set; }
+    }
 }

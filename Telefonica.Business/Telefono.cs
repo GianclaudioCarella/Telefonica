@@ -7,13 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Telefono
+namespace Telefonica.Business
 {
-    public System.Guid TelefonoId { get; set; }
-    public int Numero { get; set; }
-    public int Area { get; set; }
-    public int CodPais { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Telefono
+    {
+        public System.Guid TelefonoId { get; set; }
+        public int Numero { get; set; }
+        public int Area { get; set; }
+        public int CodPais { get; set; }
+    }
 }

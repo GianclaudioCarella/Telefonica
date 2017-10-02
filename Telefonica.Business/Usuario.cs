@@ -7,14 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Usuario
+namespace Telefonica.Business
 {
-    public System.Guid UsuarioId { get; set; }
-    public System.Guid TelefonoId { get; set; }
-    public string Nombre { get; set; }
-
-    public virtual Telefono Telefono { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Usuario
+    {
+        public System.Guid UsuarioId { get; set; }
+        public System.Guid TelefonoId { get; set; }
+        public string Nombre { get; set; }
+    
+        public virtual Telefono Telefono { get; set; }
+    }
 }

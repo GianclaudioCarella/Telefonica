@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TelefonicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Llamadas">
+          <Key>
+            <PropertyRef Name="LlamadaId" />
+          </Key>
+          <Property Name="LlamadaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UsuarioId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TelefonoId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InicioLlamada" Type="datetime" Nullable="false" />
+          <Property Name="FinLlamada" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Telefonos">
+          <Key>
+            <PropertyRef Name="TelefonoId" />
+          </Key>
+          <Property Name="TelefonoId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Area" Type="int" Nullable="false" />
+          <Property Name="CodPais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TelefonoId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Llamadas_dbo_Telefono_TelefonoId">
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="1" />
+          <End Role="Llamadas" Type="Self.Llamadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Telefonos">
+              <PropertyRef Name="TelefonoId" />
+            </Principal>
+            <Dependent Role="Llamadas">
+              <PropertyRef Name="TelefonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Llamadas_dbo_Usuario_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Llamadas" Type="Self.Llamadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Llamadas">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Telefono_TelefonoId">
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Telefonos">
+              <PropertyRef Name="TelefonoId" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="TelefonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TelefonicaModelStoreContainer">
+          <EntitySet Name="Llamadas" EntityType="Self.Llamadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Llamadas_dbo_Telefono_TelefonoId" Association="Self.FK_dbo_Llamadas_dbo_Telefono_TelefonoId">
+            <End Role="Telefonos" EntitySet="Telefonos" />
+            <End Role="Llamadas" EntitySet="Llamadas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Llamadas_dbo_Usuario_UsuarioId" Association="Self.FK_dbo_Llamadas_dbo_Usuario_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Llamadas" EntitySet="Llamadas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Telefono_TelefonoId" Association="Self.FK_dbo_Usuario_dbo_Telefono_TelefonoId">
+            <End Role="Telefonos" EntitySet="Telefonos" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TelefonicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TelefonicaEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Llamadas" EntityType="TelefonicaModel.Llamada" />
+          <EntitySet Name="Telefonos" EntityType="TelefonicaModel.Telefono" />
+          <AssociationSet Name="FK_dbo_Llamadas_dbo_Telefono_TelefonoId" Association="TelefonicaModel.FK_dbo_Llamadas_dbo_Telefono_TelefonoId">
+            <End Role="Telefonos" EntitySet="Telefonos" />
+            <End Role="Llamadas" EntitySet="Llamadas" />
+          </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="TelefonicaModel.Usuario" />
+          <AssociationSet Name="FK_dbo_Llamadas_dbo_Usuario_UsuarioId" Association="TelefonicaModel.FK_dbo_Llamadas_dbo_Usuario_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Llamada" EntitySet="Llamadas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Usuario_dbo_Telefono_TelefonoId" Association="TelefonicaModel.FK_dbo_Usuario_dbo_Telefono_TelefonoId">
+            <End Role="Telefono" EntitySet="Telefonos" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Llamada">
+          <Key>
+            <PropertyRef Name="LlamadaId" />
+          </Key>
+          <Property Name="LlamadaId" Type="Guid" Nullable="false" />
+          <Property Name="UsuarioId" Type="Guid" Nullable="false" />
+          <Property Name="TelefonoId" Type="Guid" Nullable="false" />
+          <Property Name="InicioLlamada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinLlamada" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Telefono" Relationship="TelefonicaModel.FK_dbo_Llamadas_dbo_Telefono_TelefonoId" FromRole="Llamadas" ToRole="Telefonos" />
+        </EntityType>
+        <EntityType Name="Telefono">
+          <Key>
+            <PropertyRef Name="TelefonoId" />
+          </Key>
+          <Property Name="TelefonoId" Type="Guid" Nullable="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
+          <Property Name="CodPais" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Llamadas_dbo_Telefono_TelefonoId">
+          <End Type="TelefonicaModel.Telefono" Role="Telefonos" Multiplicity="1" />
+          <End Type="TelefonicaModel.Llamada" Role="Llamadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Telefonos">
+              <PropertyRef Name="TelefonoId" />
+            </Principal>
+            <Dependent Role="Llamadas">
+              <PropertyRef Name="TelefonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Guid" Nullable="false" />
+          <Property Name="TelefonoId" Type="Guid" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Telefono" Relationship="TelefonicaModel.FK_dbo_Usuario_dbo_Telefono_TelefonoId" FromRole="Usuarios" ToRole="Telefono" />
+        </EntityType>
+        <Association Name="FK_dbo_Llamadas_dbo_Usuario_UsuarioId">
+          <End Type="TelefonicaModel.Usuario" Role="Usuarios" Multiplicity="1" />
+          <End Type="TelefonicaModel.Llamada" Role="Llamada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Llamada">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Usuario_dbo_Telefono_TelefonoId">
+          <End Type="TelefonicaModel.Telefono" Role="Telefono" Multiplicity="1" />
+          <End Type="TelefonicaModel.Usuario" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Telefono">
+              <PropertyRef Name="TelefonoId" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="TelefonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TelefonicaModelStoreContainer" CdmEntityContainer="TelefonicaEntities" >
+          <EntitySetMapping Name="Llamadas">
+            <EntityTypeMapping TypeName="TelefonicaModel.Llamada">
+              <MappingFragment StoreEntitySet="Llamadas">
+                <ScalarProperty Name="FinLlamada" ColumnName="FinLlamada" />
+                <ScalarProperty Name="InicioLlamada" ColumnName="InicioLlamada" />
+                <ScalarProperty Name="TelefonoId" ColumnName="TelefonoId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="LlamadaId" ColumnName="LlamadaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Telefonos">
+            <EntityTypeMapping TypeName="TelefonicaModel.Telefono">
+              <MappingFragment StoreEntitySet="Telefonos">
+                <ScalarProperty Name="CodPais" ColumnName="CodPais" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="TelefonoId" ColumnName="TelefonoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="TelefonicaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TelefonoId" ColumnName="TelefonoId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

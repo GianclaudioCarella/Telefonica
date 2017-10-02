@@ -1,0 +1,49 @@
+<md-toolbar md-scroll-shrink ng-if="true">
+  <div class="md-toolbar-tools">
+    <h3>
+      <span>{{vm.title}}</span>
+    </h3>
+  </div>
+</md-toolbar>
+
+<md-tabs class="md-accent" md-align-tabs="top" flex>
+  <md-tab id="tab1">
+    <md-tab-label>Lista Usuarios</md-tab-label>
+    <md-tab-body>
+
+      <md-list-item ng-repeat="m in vm.usuarios"
+                    class="md-3-line">
+        <!--<pqs-avatar pqs-avatar-data="{name: m.ToAddresses }" class="large"></pqs-avatar>-->
+        <img ng-src="app/images/user.png" class="md-avatar" style="margin-top:22px" />
+        <div class="md-list-item-text" layout="column">
+          <h3><b>Nombre: </b>{{ m.Nombre }}</h3>
+          <h4><b>Numero: </b>{{ m.Telefono.Numero }}</h4>
+          <h4><b>Area: </b>{{ m.Telefono.Area }}</h4>
+          <p><b>Pais: </b>{{ m.Telefono.CodPais }}</p>
+        </div>
+
+        <md-menu class="md-secondary">
+          <md-button class="md-icon-button">
+            <ng-md-icon icon="menu"></ng-md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button>
+                <ng-md-icon icon="delete">
+                </ng-md-icon>
+                Borrar
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </md-list-item>
+
+    </md-tab-body>
+  </md-tab>
+  <md-tab id="tab2">
+    <md-tab-label>Nuevo Usuario</md-tab-label>
+    <md-tab-body>
+      View for Item #2 <br/> data.selectedIndex = 1;
+    </md-tab-body>
+  </md-tab>
+</md-tabs>

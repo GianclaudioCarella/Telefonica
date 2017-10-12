@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Telefonica.Business;
-using Telefonica.Business.Enums;
-using Telefonica.Business.Repositories;
 using Telefonica.Business.Services;
 
 namespace Telefonica.Web.Controllers
@@ -14,37 +10,45 @@ namespace Telefonica.Web.Controllers
     [RoutePrefix("api/Llamada")]
     public class LlamadaController : ApiController
     {
-        LlamadaRepository repo = new LlamadaRepository(new TelefonicaEntities());
-        LlamadaService srv = new LlamadaService();
+        private IRepository<Llamada> _repo;
+        private ILlamadaService _srv;
+
+        public LlamadaController(
+            IRepository<Llamada> repo, 
+            ILlamadaService srv)
+        {
+            _repo = repo;
+            _srv = srv;
+        }
 
         [HttpGet]
         public IEnumerable<Llamada> Get()
         {
-            return repo.GetAll();
+            return _repo.GetAll();
         }
 
         [HttpGet, Route("{id:guid}")]
         public Llamada Get(Guid id)
         {
-            return repo.Get(id);
+            return _repo.Get(id);
         }
 
         [HttpGet, Route("{inicio:DateTime}/{fin:DateTime}")]
         public IEnumerable<Llamada> GetRange(DateTime inicio, DateTime fin)
         {
-            return repo.GetAll().Where(l => l.InicioLlamada >= inicio && l.InicioLlamada <= fin).ToList();
+            return _repo.GetAll().Where(l => l.InicioLlamada >= inicio && l.InicioLlamada <= fin).ToList();
         }
 
         [HttpGet, Route("CalculaCosto/{llamadaId:guid}")]
         public double CalculaCosto(Guid llamadaId)
         {
-            return srv.CalculaCosto(repo.Get(llamadaId));
+            return _srv.CalculaCosto(_repo.Get(llamadaId));
         }
 
         [HttpGet, Route("CalculaCosto/{inicio:DateTime}/{fin:DateTime}")]
         public double CalculaCostoRange(DateTime inicio, DateTime fin)
         {
-            return srv.CalculaCostoRange(inicio, fin);
+            return _srv.CalculaCostoRange(inicio, fin);
         }
 
         [HttpPost, Route("new")]
@@ -71,25 +75,25 @@ namespace Telefonica.Web.Controllers
             Llamada.UsuarioId = user;
             Llamada.Usuario.UsuarioId = user;
 
-            repo.Insert(Llamada);
-            repo.Save();
+            _repo.Insert(Llamada);
+            _repo.Save();
         }
 
         [HttpPost, Route("update")]
         public void UpdateLlamada(Llamada Llamada)
         {
-            repo.Update(Llamada);
-            repo.Save();
+            _repo.Update(Llamada);
+            _repo.Save();
         }
 
         [HttpPost, Route("delete/{id:guid}")]
         public void Delete(Guid id)
         {
-            repo.Delete(id);
-            repo.Save();
+            _repo.Delete(id);
+            _repo.Save();
         }
 
-        
+
 
     }
 }

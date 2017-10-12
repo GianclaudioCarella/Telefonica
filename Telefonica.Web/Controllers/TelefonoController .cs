@@ -12,40 +12,45 @@ namespace Telefonica.Web.Controllers
     [RoutePrefix("api/Telefono")]
     public class TelefonoController : ApiController
     {
-        TelefonoRepository repo = new TelefonoRepository(new TelefonicaEntities());
+        private IRepository<Telefono> _repo;
+
+        public TelefonoController(IRepository<Telefono> repo)
+        {
+            _repo = repo;
+        }
 
         [HttpGet]
         public IEnumerable<Telefono> Get()
         {
-            return repo.GetAll();
+            return _repo.GetAll();
         }
 
         [HttpGet, Route("{id:guid}")]
         public Telefono Get(Guid id)
         {
-            return repo.Get(id);
+            return _repo.Get(id);
         }
 
         [HttpPost, Route("new")]
         public void New(Telefono Telefono)
         {
             Telefono.TelefonoId = Guid.NewGuid();
-            repo.Insert(Telefono);
-            repo.Save();
+            _repo.Insert(Telefono);
+            _repo.Save();
         }
 
         [HttpPost, Route("update")]
         public void UpdateTelefono(Telefono Telefono)
         {
-            repo.Update(Telefono);
-            repo.Save();
+            _repo.Update(Telefono);
+            _repo.Save();
         }
 
         [HttpPost, Route("delete/{id:guid}")]
         public void Delete(Guid id)
         {
-            repo.Delete(id);
-            repo.Save();
+            _repo.Delete(id);
+            _repo.Save();
         }
     }
 }

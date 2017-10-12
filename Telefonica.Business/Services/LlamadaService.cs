@@ -8,7 +8,7 @@ using Telefonica.Business.Repositories;
 
 namespace Telefonica.Business.Services
 {
-    public class LlamadaService
+    public class LlamadaService : ILlamadaService
     {
 
         LlamadaRepository repo = new LlamadaRepository(new TelefonicaEntities());

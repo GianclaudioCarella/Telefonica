@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Telefonica.Business
 {
-    interface IRepository<T> : IDisposable
+    public interface IRepository<T> : IDisposable
     {
         IEnumerable<T> GetAll();
         T Get(Guid num);

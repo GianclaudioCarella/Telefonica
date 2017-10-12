@@ -10,6 +10,7 @@ namespace Telefonica.Business.Repositories
     public class LlamadaRepository : IRepository<Llamada>
     {
         private TelefonicaEntities _context;
+
         public LlamadaRepository(TelefonicaEntities telefonicaContext)
         {
             this._context = telefonicaContext;

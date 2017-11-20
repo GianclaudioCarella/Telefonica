@@ -22,6 +22,7 @@
       vm.title = 'Usuarios';
       vm.usuarios = [];
       var serviceRoot = window.location.protocol + '//' + window.location.host + window.location.pathname;
+      vm.printDiv = printDiv;
 
       vm.usuarios = getUsuarios();
 
@@ -39,5 +40,18 @@
               return response;
           }
       }
+
+
+      function printDiv(divName) {
+          var printContents = document.getElementById(divName).innerHTML;
+          var popupWin = window.open('', '_blank', 'width=800,height=800');
+          popupWin.document.open();
+          popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../styles/style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+          popupWin.document.close();
+      }
+
+      
+
+
   }
 })();

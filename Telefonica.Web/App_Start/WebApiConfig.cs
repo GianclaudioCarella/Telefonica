@@ -14,6 +14,7 @@ namespace Telefonica.Web
             // DI
             var container = new UnityContainer();
                 container
+                .RegisterType(typeof(IRepository<TelefonicaEntities>), typeof(TelefonicaEntities))
                 .RegisterType(typeof(IRepository<Llamada>), typeof(LlamadaRepository))
                 .RegisterType(typeof(IRepository<Telefono>), typeof(TelefonoRepository))
                 .RegisterType(typeof(IRepository<Usuario>), typeof(UsuarioRepository))

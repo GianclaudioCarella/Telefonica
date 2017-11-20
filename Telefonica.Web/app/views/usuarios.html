@@ -6,11 +6,13 @@
     </div>
 </md-toolbar>
 
+
+
 <md-tabs class="md-accent" md-stretch-tabs="always" md-border-bottom flex layout-fill>
     <md-tab id="tab1">
         <md-tab-label>Lista Usuarios</md-tab-label>
         <md-tab-body>
-            <md-tab-content flex>
+            <md-tab-content id="printable" flex>
                 <md-content class="md-whiteframe-4dp innerTwo" style="" flex>
                     <md-list-item ng-repeat="m in vm.usuarios"
                                   class="md-3-line">
@@ -42,3 +44,8 @@
         </md-tab-body>
     </md-tab>
 </md-tabs>
+
+<div>
+    <button ng-click="vm.printDiv('printable');">Print Div</button>
+</div>
+

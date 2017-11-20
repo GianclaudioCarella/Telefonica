@@ -70,6 +70,10 @@
       <Project>{0d693369-1fe7-4224-9a47-8eb50074e3fd}</Project>
       <Name>Telefonica.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Telefonica.Data\Telefonica.Data.csproj">
+      <Project>{dc63445e-0ee2-423b-bac8-94fe371e87fc}</Project>
+      <Name>Telefonica.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Telefonica.Web\Telefonica.Web.csproj">
       <Project>{7337248B-9B4F-468F-B9A9-C240578E5E15}</Project>
       <Name>Telefonica.Web</Name>

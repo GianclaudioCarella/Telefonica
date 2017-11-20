@@ -11,7 +11,12 @@ namespace Telefonica.Business.Services
     public class LlamadaService : ILlamadaService
     {
 
-        LlamadaRepository repo = new LlamadaRepository(new TelefonicaEntities());
+        LlamadaRepository _repo;
+
+        public LlamadaService(LlamadaRepository repo)
+        {
+            _repo = repo;
+        }
 
         /// <summary>
         /// Calcula el costo de una llamada
@@ -47,9 +52,15 @@ namespace Telefonica.Business.Services
             return total;
         }
 
+        /// <summary>
+        /// Calcula el costo de una llamada en un rango de fechas
+        /// </summary>
+        /// <param name="inicio"></param>
+        /// <param name="fin"></param>
+        /// <returns></returns>
         public double CalculaCostoRange(DateTime inicio, DateTime fin)
         {
-            IEnumerable<Llamada> lamadas = repo.GetAll().Where(la => la.InicioLlamada >= inicio && la.InicioLlamada <= fin).ToList();
+            IEnumerable<Llamada> lamadas = _repo.GetAll().Where(la => la.InicioLlamada >= inicio && la.InicioLlamada <= fin).ToList();
             double total = 0;
 
             foreach (var item in lamadas)

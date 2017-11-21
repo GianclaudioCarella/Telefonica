@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telefonica.Business
+namespace Telefonica.Data
 {
     using System;
     using System.Data.Entity;
@@ -25,8 +25,8 @@ namespace Telefonica.Business
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Llamada> Llamadas { get; set; }
         public virtual DbSet<Telefono> Telefonos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<Llamada> Llamadas { get; set; }
     }
 }

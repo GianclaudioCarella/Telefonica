@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telefonica.Business
+namespace Telefonica.Data
 {
     using System;
     using System.Collections.Generic;

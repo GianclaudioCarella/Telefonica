@@ -75,19 +75,19 @@
     <Compile Include="Repositories\TelefonoRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="TelefonicaModel.Context.cs">
-      <DependentUpon>TelefonicaModel.Context.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>TelefonicaModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="TelefonicaModel.cs">
-      <DependentUpon>TelefonicaModel.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>TelefonicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TelefonicaModel.Designer.cs">
-      <DependentUpon>TelefonicaModel.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>TelefonicaModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Telefono.cs">
       <DependentUpon>TelefonicaModel.tt</DependentUpon>
@@ -116,14 +116,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="TelefonicaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TelefonicaModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
     <None Include="TelefonicaModel.edmx.diagram">
       <DependentUpon>TelefonicaModel.edmx</DependentUpon>
     </None>
@@ -139,6 +137,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

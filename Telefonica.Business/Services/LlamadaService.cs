@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Telefonica.Business.Enums;
 using Telefonica.Business.Repositories;
+using Telefonica.Data;
 
 namespace Telefonica.Business.Services
 {
